@@ -2,6 +2,7 @@ const gameContainer = document.getElementById("game-container");
 const block = document.getElementById("block");
 const scoreDisplay = document.getElementById("score");
 const recordDisplay = document.getElementById("record");
+const startBtn = document.getElementById("start-btn");
 const restartBtn = document.getElementById("restart-btn");
 
 let score = 0;
@@ -9,10 +10,17 @@ let record = localStorage.getItem("stackGameRecord") || 0;
 let blockPosition = 0;
 let blockSpeed = 2;
 let blockDirection = 1;
-let isPlaying = true;
+let isPlaying = false;
 let stack = [];
 
 recordDisplay.textContent = Record: ${record};
+
+function startGame() {
+    isPlaying = true;
+    startBtn.style.display = "none";
+    stack.push(block);
+    moveBlock();
+}
 
 function moveBlock() {
     if (!isPlaying) return;
@@ -108,6 +116,4 @@ function restartGame() {
 
 gameContainer.addEventListener("click", dropBlock);
 restartBtn.addEventListener("click", restartGame);
-
-stack.push(block);
-moveBlock();
+startBtn.addEventListener("click", startGame); // Додано обробник події для кнопки Start
