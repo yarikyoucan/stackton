@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Stack Game</title>
+    <title>Color Reaction Game</title>
     <style>
         body {
             display: flex;
@@ -19,17 +19,40 @@
             height: 500px;
             border: 2px solid black;
             overflow: hidden;
-            background: linear-gradient(to bottom, lightgreen, darkgreen);
         }
 
-        #block {
+        #timer {
             position: absolute;
-            width: 100px;
-            height: 20px;
-            background-color: darkgreen;
-            transition: left 0.5s linear;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            display: none; /* Приховуємо початковий блок */
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 24px;
+        }
+
+        #color-square {
+            position: absolute;
+            top: 250px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+        }
+
+        #left-btn, #right-btn {
+            position: absolute;
+            top: 250px;
+            width: 80px;
+            height: 30px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #left-btn {
+            left: 50px;
+        }
+
+        #right-btn {
+            right: 50px;
         }
 
         #score {
@@ -37,7 +60,6 @@
             top: 10px;
             left: 10px;
             font-size: 18px;
-            color: white;
         }
 
         #record {
@@ -45,7 +67,6 @@
             top: 10px;
             right: 10px;
             font-size: 18px;
-            color: white;
         }
 
         #start-btn {
@@ -59,20 +80,17 @@
             background-color: white;
             border: 1px solid black;
         }
-
-        .black-part {
-            position: absolute;
-            background-color: black;
-            transition: opacity 0.5s ease-in-out;
-        }
     </style>
 </head>
 <body>
     <div id="game-container">
-        <button id="start-btn">Start</button>
-        <div id="block"></div>
+        <div id="timer">10</div>
+        <div id="color-square"></div>
+        <button id="left-btn">Left</button>
+        <button id="right-btn">Right</button>
         <div id="score">Score: 0</div>
         <div id="record">Record: 0</div>
+        <button id="start-btn">Start</button>
     </div>
     <script src="script.js"></script>
 </body>
