@@ -17,7 +17,8 @@ recordDisplay.textContent = Record: ${record};
 function startGame() {
     isPlaying = true;
     startBtn.style.display = "none";
-    block.style.left = (gameContainer.offsetWidth - block.offsetWidth) / 2 + "px"; // Розташування блоку по центру
+    block.style.display = "block"; // Показуємо початковий блок
+    block.style.left = (gameContainer.offsetWidth - block.offsetWidth) / 2 + "px"; // Розташовуємо по центру
     stack.push(block);
     moveBlock();
 }
@@ -99,16 +100,7 @@ function getNextBlockColor() {
 function endGame() {
     isPlaying = false;
     startBtn.style.display = "block";
-
-    if (score > record) {
-        record = score;
-        localStorage.setItem("stackGameRecord", record);
-        recordDisplay.textContent = Record: ${record};
-    }
 }
 
 gameContainer.addEventListener("click", dropBlock);
 startBtn.addEventListener("click", startGame);
-
-// Розташування початкового блоку по центру перед початком гри
-block.style.left = (gameContainer.offsetWidth - block.offsetWidth) / 2 + "px";
