@@ -46,7 +46,6 @@ function dropBlock() {
     const overlap = prevBlock ? calculateOverlap(block, prevBlock) : block.offsetWidth;
 
     if (overlap > 0) {
-        // Відображення відпадаючої частини блоку
         const blackPart = document.createElement("div");
         blackPart.classList.add("black-part");
         blackPart.style.left = blockPosition + overlap + "px";
@@ -92,7 +91,7 @@ function calculateOverlap(block1, block2) {
 }
 
 function getNextBlockColor() {
-    const colors = ["darkred", "indianred", "lightcoral", "salmon", "darksalmon", "lightsalmon", "coral", "tomato", "orangered", "orange", "darkorange", "gold", "yellow", "lightyellow"];
+    const colors = ["darkgreen", "limegreen", "lightgreen", "mediumseagreen", "seagreen", "forestgreen", "green", "olive", "yellowgreen", "darkolivegreen"];
     return colors[Math.floor(Math.random() * colors.length)];
 }
 
@@ -109,3 +108,6 @@ function endGame() {
 
 gameContainer.addEventListener("click", dropBlock);
 startBtn.addEventListener("click", startGame);
+
+// Розташування початкового блоку по центру
+block.style.left = (gameContainer.offsetWidth - block.offsetWidth) / 2 + "px";
