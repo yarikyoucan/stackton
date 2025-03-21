@@ -77,9 +77,3 @@ function checkAnswer(isLeft) {
 leftBtn.addEventListener("click", () => checkAnswer(true));
 rightBtn.addEventListener("click", () => checkAnswer(false));
 startBtn.addEventListener("click", startGame);
-
-// Приховуємо елементи на початку гри
-leftBtn.style.display = "none";
-rightBtn.style.display = "none";
-timerDisplay.style.display = "none";
-colorSquare.style.display = "none";
