@@ -3,7 +3,6 @@ const block = document.getElementById("block");
 const scoreDisplay = document.getElementById("score");
 const recordDisplay = document.getElementById("record");
 const startBtn = document.getElementById("start-btn");
-const restartBtn = document.getElementById("restart-btn");
 
 let score = 0;
 let record = localStorage.getItem("stackGameRecord") || 0;
@@ -47,6 +46,21 @@ function dropBlock() {
     const overlap = prevBlock ? calculateOverlap(block, prevBlock) : block.offsetWidth;
 
     if (overlap > 0) {
+        // Відображення відпадаючої частини блоку
+        const blackPart = document.createElement("div");
+        blackPart.classList.add("black-part");
+        blackPart.style.left = blockPosition + overlap + "px";
+        blackPart.style.width = block.offsetWidth - overlap + "px";
+        blackPart.style.height = block.offsetHeight + "px";
+        gameContainer.appendChild(blackPart);
+
+        setTimeout(() => {
+            blackPart.style.opacity = 0;
+            setTimeout(() => {
+                blackPart.remove();
+            }, 500);
+        }, 10);
+
         block.style.width = overlap + "px";
         blockPosition += (block.offsetWidth - overlap) / 2;
         block.style.left = blockPosition + "px";
@@ -55,7 +69,7 @@ function dropBlock() {
         blockSpeed *= 1.1;
 
         const newBlock = block.cloneNode(true);
-        newBlock.style.backgroundColor = getRandomColor();
+        newBlock.style.backgroundColor = getNextBlockColor();
         gameContainer.appendChild(newBlock);
         stack.push(newBlock);
 
@@ -77,18 +91,14 @@ function calculateOverlap(block1, block2) {
     return Math.max(0, right - left);
 }
 
-function getRandomColor() {
-    const letters = "0123456789ABCDEF";
-    let color = "#";
-    for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-    }
-    return color;
+function getNextBlockColor() {
+    const colors = ["darkred", "indianred", "lightcoral", "salmon", "darksalmon", "lightsalmon", "coral", "tomato", "orangered", "orange", "darkorange", "gold", "yellow", "lightyellow"];
+    return colors[Math.floor(Math.random() * colors.length)];
 }
 
 function endGame() {
     isPlaying = false;
-    restartBtn.style.display = "block";
+    startBtn.style.display = "block";
 
     if (score > record) {
         record = score;
@@ -97,23 +107,5 @@ function endGame() {
     }
 }
 
-function restartGame() {
-    score = 0;
-    scoreDisplay.textContent = "Score: 0";
-    block.style.width = "100px";
-    blockPosition = Math.random() * (gameContainer.offsetWidth - 100);
-    block.style.left = blockPosition + "px";
-    blockSpeed = 2;
-    blockDirection = 1;
-    isPlaying = true;
-    restartBtn.style.display = "none";
-
-    stack.forEach(b => b.remove());
-    stack = [];
-
-    moveBlock();
-}
-
 gameContainer.addEventListener("click", dropBlock);
-restartBtn.addEventListener("click", restartGame);
-startBtn.addEventListener("click", startGame); // Додано обробник події для кнопки Start
+startBtn.addEventListener("click", startGame);
