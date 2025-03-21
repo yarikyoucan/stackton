@@ -19,7 +19,7 @@
             height: 500px;
             border: 2px solid black;
             overflow: hidden;
-            background: linear-gradient(to bottom, lightgray, gainsboro); /* Світлий сірий градієнт */
+            background: linear-gradient(to bottom, lightgray, gainsboro);
         }
 
         #timer {
@@ -28,6 +28,7 @@
             left: 50%;
             transform: translateX(-50%);
             font-size: 24px;
+            display: none; /* Приховуємо таймер на початку гри */
         }
 
         #color-square {
@@ -37,6 +38,7 @@
             transform: translateX(-50%);
             width: 50px;
             height: 50px;
+            display: none; /* Приховуємо квадрат на початку гри */
         }
 
         #left-btn, #right-btn {
@@ -46,6 +48,7 @@
             height: 30px;
             font-size: 16px;
             cursor: pointer;
+            display: none; /* Приховуємо кнопки на початку гри */
         }
 
         #left-btn {
