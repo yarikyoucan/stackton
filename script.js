@@ -16,8 +16,8 @@ recordDisplay.textContent = Record: ${record};
 
 function startGame() {
     startBtn.style.display = "none";
-    leftBtn.style.display = "block";
-    rightBtn.style.display = "block";
+    leftBtn.style.display = "block"; // Показуємо кнопки
+    rightBtn.style.display = "block"; // Показуємо кнопки
     timerDisplay.style.display = "block";
     colorSquare.style.display = "block";
 
@@ -49,8 +49,8 @@ function startTimer() {
 function endGame() {
     clearInterval(timerInterval);
     startBtn.style.display = "block";
-    leftBtn.style.display = "none";
-    rightBtn.style.display = "none";
+    leftBtn.style.display = "none"; // Приховуємо кнопки
+    rightBtn.style.display = "none"; // Приховуємо кнопки
     timerDisplay.style.display = "none";
     colorSquare.style.display = "none";
 
