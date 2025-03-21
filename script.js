@@ -17,6 +17,7 @@ recordDisplay.textContent = Record: ${record};
 function startGame() {
     isPlaying = true;
     startBtn.style.display = "none";
+    block.style.left = (gameContainer.offsetWidth - block.offsetWidth) / 2 + "px"; // Розташування блоку по центру
     stack.push(block);
     moveBlock();
 }
@@ -109,5 +110,5 @@ function endGame() {
 gameContainer.addEventListener("click", dropBlock);
 startBtn.addEventListener("click", startGame);
 
-// Розташування початкового блоку по центру
+// Розташування початкового блоку по центру перед початком гри
 block.style.left = (gameContainer.offsetWidth - block.offsetWidth) / 2 + "px";
